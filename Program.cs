@@ -2,6 +2,7 @@ using ICTStrypes.DB;
 using ICTStrypes.Interfaces;
 using ICTStrypes.Services;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,13 @@ builder.Services.AddScoped<ILocationService, LocationService>();
 
 
 var app = builder.Build();
+
+// Ensure the database exists and apply migrations
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    dbContext.Database.Migrate(); // Applies migrations and creates the database if it doesn't exist
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
