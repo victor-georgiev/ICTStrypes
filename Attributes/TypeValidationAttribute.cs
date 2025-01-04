@@ -7,7 +7,7 @@ namespace ICTStrypes.Attributes
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if (value == null || !ValidationConstants.AllowedLocationTypes.Contains(value.ToString()))
+            if (value != null && !ValidationConstants.AllowedLocationTypes.Contains(value.ToString()))
             {
                 return new ValidationResult($"Invalid Type. Allowed values are: {string.Join(", ", ValidationConstants.AllowedLocationTypes)}.");
             }
