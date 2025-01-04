@@ -7,7 +7,7 @@ namespace ICTStrypes.Models
     {
         [Required]
         [StringLength(39)]
-        public string LocationId { get; set; } //should be removed, bar requirements !!!!
+        public string LocationId { get; set; } //should be removed, bad requirements !!!!
 
         [StringLength(45)]
         [LocationTypeValidation]
